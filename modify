@@ -1,0 +1,34 @@
+echo "option 2 is selected"
+echo "**********************"
+echo "* modifying contacts *"
+echo "**********************"
+echo ""
+echo "choose an option 1-4"
+echo "1- delete a contact"
+echo "2- delete all contacts"
+echo "3- modify contact info"
+echo "4- return to main menu"
+read x
+while [ "$x" != 4 ]
+do
+case $x in
+1) del
+;;
+2) delall
+;;
+3) mod
+;;
+*)echo "!!!wrong choice!!!"
+;;
+esac
+echo ""
+echo "choose an option 1-4"
+echo "1- delete a contact"
+echo "2- delete all contacts"
+echo "3- modify contact info"
+echo "4- return to main menu"
+read x
+done
+if [ "$x" -eq 4 ];then
+echo ""
+fi

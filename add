@@ -1,0 +1,44 @@
+echo "option 1 is selected"
+echo "******************"
+echo "* adding contact *"
+echo "******************"
+echo ""
+echo "enter the contact id"
+read id
+echo $id >file
+while [ "${#id}" -ne 4 -o "$(cat contacts | cut -d: -f1| grep $id | wc -l)" -ne 0 -o $(grep '^[0-9][0-9][0-9][0-9]$' file | wc -c) == 0 ];do
+if [ "${#id}" -ne 4 -o $(grep '^[0-9][0-9][0-9][0-9]$' file | wc -c) == 0  ]; then
+echo "!!!contact id should be 4 digits!!!"
+fi
+if [ "$(cat contacts | cut -d: -f1| grep $id | wc -l)" -ne 0 -a "${#id}" -eq 4 ]; then
+echo "!!!this contact id is used!!!"
+fi
+echo "re-enter the contact id"
+read id
+echo $id >file
+done
+email=$(cut -c1,4 file)
+line="$id":
+echo "enter the first name"
+read first
+line=$line"$first"
+echo "enter the last name"
+read last
+echo $first"_"$last >file
+email=$(cut -d_ -f1 file | cut -c1 )$(cut -d_ -f2 file | cut -c1)$email"@birzeit.edu"
+line=$line"_$last"
+echo "enter the phone number"
+read phone
+echo $phone >file
+while [ $(grep '^[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$' file | wc -c) == 0 ];do
+echo "re-enter the phone number"
+read phone
+echo $phone >file
+done
+line=$line:"$phone"
+line=$line:"$email"
+echo $line >>contacts
+
+
+
+

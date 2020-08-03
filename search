@@ -1,0 +1,30 @@
+echo "option 3 is selected"
+echo "**********************"
+echo "* searching contacts *"
+echo "**********************"
+echo ""
+echo "choose an option 1-4"
+echo "1- search by id number"
+echo "2- search by name"
+echo "3- return to main menu"
+read x
+while [ "$x" -ne 3 ]
+do
+case $x in
+1) sid
+;;
+2) sname
+;;
+*)echo "!!!wrong choice!!!"
+;;
+esac
+echo ""
+echo "choose an option 1-4"
+echo "1- search by id number"
+echo "2- search by name"
+echo "3- return to main menu"
+read x
+done
+if [ "$x" -eq 3 ];then
+echo ""
+fi

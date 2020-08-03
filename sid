@@ -1,0 +1,11 @@
+echo "enter the contact's id"
+read id
+if [ $(cut -d: -f1 contacts | grep "^$id$" | wc -c) -eq 0 ];then
+echo "contact not found"
+else
+c=$(grep "^$id" contacts)
+echo first name    : $(echo $c | cut -d: -f2 | cut -d_ -f1)
+echo last name     : $(echo $c | cut -d: -f2 | cut -d_ -f2)
+echo phone number  : $(echo $c | cut -d: -f3)
+echo email address : $(echo $c | cut -d: -f4)
+fi

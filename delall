@@ -1,0 +1,2 @@
+echo "" >contacts
+echo "all contacts deleted"

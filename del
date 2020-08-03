@@ -1,0 +1,8 @@
+echo "enter the contact's id to delete"
+read id
+if [ $(cut -d: -f1 contacts | grep $id | wc -c) -eq 0 ];then
+echo "contact not found!!!"
+else
+sed -i "/^$id/d" contacts 
+echo "contact deleted successfully"
+fi

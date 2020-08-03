@@ -1,0 +1,36 @@
+echo ""
+echo "choose an option 1-2"
+echo "1- search by first name"
+echo "2- search by last name"
+read x
+if [ $x == 1 ]; then
+echo "enter the contact's first name"
+read first
+grep ":$first" contacts | cut -d_ -f1 | sort -t: -k2 | cut -d: -f1 > file
+for i in $(cat $1 file); do
+c=$(grep "^$i" contacts)
+echo id : $(echo $c | cut -d: -f1)
+echo first name    : $(echo $c | cut -d: -f2 | cut -d_ -f1)
+echo last name     : $(echo $c | cut -d: -f2 | cut -d_ -f2)
+echo phone number  : $(echo $c | cut -d: -f3)
+echo email address : $(echo $c | cut -d: -f4)
+echo "------------------------------------------------------"
+done
+fi
+if [ $x == 2 ]; then
+echo "enter the contact's last name"
+read last
+grep "_$last" contacts | cut -d_ -f1 | sort -t: -k2 | cut -d: -f1 >file
+for i in $(cat $1 file); do
+c=$(grep "^$i" contacts)
+echo id : $(echo $c | cut -d: -f1)
+echo first name    : $(echo $c | cut -d: -f2 | cut -d_ -f1)
+echo last name     : $(echo $c | cut -d: -f2 | cut -d_ -f2)
+echo phone number  : $(echo $c | cut -d: -f3)
+echo email address : $(echo $c | cut -d: -f4)
+echo "------------------------------------------------------"
+done
+fi
+if [ $x != 1 -a $x != 2 ]; then
+sname
+fi
